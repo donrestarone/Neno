@@ -10,11 +10,20 @@ class UsersController < ApplicationController
   	@user.email = params[:user][:email]
   	@user.password = params[:user][:password]
   	@user.password_confirmation = params[:user][:password_confirmation]
-  	@user.match = params[:user][:match]
+  	@user.match = ActiveRecord::Type::Boolean.new.cast(params[:user][:match])
 
   	if @user.save
   		redirect_to user_path
-  	
+  	else 
+  		redirect_to new_user_path
   	end
   end
+
+  def show
+  	
+  end
+
+  def welcome 
+    
+  end 
 end
