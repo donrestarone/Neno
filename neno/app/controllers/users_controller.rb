@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :current_user, only: %i(show)
+  
   def new
   	@user = User.new
   end
@@ -20,10 +22,11 @@ class UsersController < ApplicationController
   end
 
   def show
-  	
+  	@user = current_user
+    @match = current_user.match
   end
 
   def welcome 
-    
+
   end 
 end

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
  before_action :user_already_logged_in, only: %i(new)
- 
+
   def new
   end
 
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
   	if user && user.authenticate(user_password)
   		session[:user_id] = user.id
-  		redirect_to root_path
+  		redirect_to user_path
   	else 
   		render :new
   	end
