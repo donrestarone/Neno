@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   	@user.match = ActiveRecord::Type::Boolean.new.cast(params[:user][:match])
 
   	if @user.save
+      session[:user_id] = @user.id
   		redirect_to user_path
   	else 
   		redirect_to new_user_path
@@ -22,8 +23,11 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = current_user
-    @match = current_user.match
+    #if current_user != nil
+    	@user = current_user
+      @match = current_user.match
+      
+    #end
   end
 
   def welcome 
