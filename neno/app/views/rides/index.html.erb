@@ -1,0 +1,31 @@
+<p>Google</p>
+
+  <div class="search-field">
+  <%= form_tag(root_path, :method => "get" ) do %>
+<h2>Start location</h2>
+  <%= text_field_tag :start_location, params[:start_location], id: "autocomplete", placeholder: "Enter your address", onFocus: "geolocate()", type:"text" %>
+  <br>
+  <h2>Destination</h2>
+<%= text_field_tag :end_location, params[:end_location], id: "autocomplete2", placeholder: "Enter your address", onFocus: "geolocate()", type:"text" %>
+
+<br>
+<br>
+  <%= submit_tag "Run Baby, RUN!!!" %>
+  <% end %>
+
+  <% if @parsed_taxi_fare_response %>
+<br>
+<% @parsed_taxi_fare_response["uber"].each do |option| %>
+<%= option["type"]  %> : <%= option["fare"]  %>  <%= option["currency"] %>
+<br>
+<br>
+<% end %>
+
+<% @parsed_taxi_fare_response["lyft"].each do |option| %>
+<%= option["type"]  %> : <%= option["fare"]  %>  <%= option["currency"] %>
+<br>
+<br>
+<% end %>
+<% end %>
+
+
