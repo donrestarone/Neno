@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: %i(show)
-  
+  before_action :user_already_logged_in, only: %i(new)  
+  before_action :ensure_logged_in, only: %i(show)
   def new
   	@user = User.new
   end
